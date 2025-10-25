@@ -1,5 +1,7 @@
 
 using HPMFileStorageService.Data;
+using HPMFileStorageService.Models;
+using HPMFileStorageService.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace HPMFileStorageService
@@ -20,6 +22,11 @@ namespace HPMFileStorageService
             // Подключение PostgreSQL
             builder.Services.AddDbContext<ApplicationDBContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            // Регистрация настроек MinIO
+            builder.Services.Configure<MinIOSettings>(builder.Configuration.GetSection("MinIO"));
+            // Регистрация сервиса MinIO
+            builder.Services.AddScoped<IMinIOService, MinIOService>();
 
             var app = builder.Build();
 

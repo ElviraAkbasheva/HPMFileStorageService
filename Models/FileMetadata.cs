@@ -6,7 +6,7 @@ namespace HPMFileStorageService.Models
     {
         public int Id { get; set; }
 
-        [Required] //Это атрибут валидации из System.ComponentModel.DataAnnotations. Он проверяет, что поле не равно null и не является пустой строкой.
+        [Required] //Атрибут валидации из System.ComponentModel.DataAnnotations. Он проверяет, что поле не равно null и не является пустой строкой.
         public string FileName { get; set; } = string.Empty;
 
         [Required]

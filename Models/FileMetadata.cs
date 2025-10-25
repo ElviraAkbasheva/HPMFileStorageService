@@ -21,5 +21,6 @@ namespace HPMFileStorageService.Models
 
         [Required]
         public string ContentType { get; set; } = string.Empty;
+        public string FileHash { get; set; } = string.Empty;
     }
 }

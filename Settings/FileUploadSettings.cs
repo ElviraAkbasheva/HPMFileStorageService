@@ -1,4 +1,4 @@
-﻿namespace HPMFileStorageService.Models
+﻿namespace HPMFileStorageService.Settings
 {
     public class FileUploadSettings
     {

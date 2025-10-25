@@ -1,0 +1,20 @@
+cd "D:\C#\MyProjectWorkPro\HPMFileStorageService"
+
+Миграции БД
+dotnet ef migrations add AddFileHashToMetadata
+dotnet ef database update
+
+Запуск MinIO
+docker run -p 9000:9000 -p 9001:9001 minio/minio server /data --console-address ":9001"
+
+Запуск сервиса в Swagger
+dotnet watch run
+
+Консоль MinIO
+http://localhost:9001
+
+-- Удаляем все строки
+DELETE FROM public."Files";
+
+-- Сбрасываем счётчик ID (sequence) на начальное значение (1)
+ALTER SEQUENCE "Files_Id_seq" RESTART WITH 1;

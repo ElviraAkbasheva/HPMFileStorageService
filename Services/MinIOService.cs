@@ -1,4 +1,4 @@
-﻿using HPMFileStorageService.Models;
+﻿using HPMFileStorageService.Settings;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Minio;

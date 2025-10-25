@@ -1,6 +1,7 @@
 ﻿using HPMFileStorageService.Data;
 using HPMFileStorageService.Models;
 using HPMFileStorageService.Services;
+using HPMFileStorageService.Settings;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;

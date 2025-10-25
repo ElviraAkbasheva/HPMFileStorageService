@@ -1,6 +1,0 @@
-@HPMFileStorageService_HostAddress = http://localhost:5209
-
-GET {{HPMFileStorageService_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -2,6 +2,7 @@
 using HPMFileStorageService.Models;
 using HPMFileStorageService.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace HPMFileStorageService.Controllers
 {
@@ -11,10 +12,12 @@ namespace HPMFileStorageService.Controllers
     {
         private readonly ApplicationDBContext _context;
         private readonly IMinIOService _minioService;
-        public FileController(ApplicationDBContext context, IMinIOService minioService)
+        private readonly long _maxFileSizeBytes;
+        public FileController(ApplicationDBContext context, IMinIOService minioService, IOptions<FileUploadSettings> fileUploadSettings)
         {
            _context = context;
            _minioService = minioService;
+           _maxFileSizeBytes = fileUploadSettings.Value.MaxFileSizeMB * 1024L * 1024L; // МБ переводим в байты
         }
 
         [HttpPost("upload")]
@@ -22,6 +25,9 @@ namespace HPMFileStorageService.Controllers
         {
             if (file == null || file.Length == 0)
                 return BadRequest("Файл обязателен и не может быть пустым.");
+
+            if (file.Length > _maxFileSizeBytes)
+                return BadRequest($"Размер файла превышает допустимый лимит в {_maxFileSizeBytes / (1024 * 1024)} МБ.");
 
             try
             {
